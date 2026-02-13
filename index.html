@@ -344,29 +344,41 @@ submitBtn.onclick=function(){
 
 function showResult(){
 
-    quizQuestion.style.display="none";
+    /* Hide quiz elements */
     quizInput.style.display="none";
     progress.style.display="none";
     submitBtn.style.display="none";
 
-    scoreText.style.display="block";
-    scoreText.innerText=`Your score: ${score} / ${questions.length}`;
+    /* PERFECT SCORE */
+    if(score === questions.length){
 
-    codeText.style.display="block";
+        quizQuestion.style.display="block";
 
-    if(score===questions.length){
+        quizQuestion.innerHTML = `
+            Yay, you remembered everything! 💜<br><br>
+            Thank you for remembering our memories.<br>
+            I love you so much. 💜
+        `;
 
-        codeText.innerText=`Code: ${finalCode} 💜`;
-        noteText.style.display="block";
+        retryBtn.style.display="none";
 
-    }else{
+    }
+    else{
 
-        codeText.innerText="Code locked 🔒 Try again!";
-        retryBtn.style.display="inline-block"; /* FORCE SHOW */
+        /* NOT PERFECT SCORE */
+        quizQuestion.style.display="block";
+
+        quizQuestion.innerHTML = `
+            Your score: ${score} / ${questions.length}<br><br>
+            Almost! Try again, wabby 💜
+        `;
+
+        retryBtn.style.display="inline-block";
 
     }
 
 }
+
 
 
 /* Retry always visible after fail */
